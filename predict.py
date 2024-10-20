@@ -24,6 +24,7 @@ def preprocess_image(image_path):
 def predict_tumor(image_path, model):
     img_array = preprocess_image(image_path)
     predictions = model.predict(img_array)
+    print(f"\nPredictions are >>>>>> \n{predictions}\n")
     labels = ['Tumor Detected : GLIOMA TUMOR', 'Tumor Detected : MENINGIOMA TUMOR',
               'NO TUMOR Detected', 'Tumor Detected : PITUITARY TUMOR']
     predicted_class_idx = np.argmax(predictions)
@@ -52,7 +53,7 @@ def predict():
         file.save(file_path)
 
         predicted_class, confidence, index = predict_tumor(file_path, model)
-        print(f"Predicted tumor type: {predicted_class}, Confidence: {confidence*100:.2f}")
+        print(f"Predicted tumor type: {predicted_class},\nConfidence: {confidence*100:.2f}\n")
         
         result = predicted_class
         
